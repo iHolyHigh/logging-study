@@ -33,16 +33,81 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.32</version>
         </dependency>
+
+        <!--绑定NOP，默默地丢弃所有日志记录-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>1.7.32</version>
+        </dependency>
+        <!--将所有事件输出到System.err。只打印INFO级别和更高级别的消息-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.32</version>
+        </dependency>
+        <!--log4j 1.2版的绑定，一个广泛使用的日志框架。使用时必须编写log4j.xml配置，否则报错-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.32</version>
+        </dependency>
+        <!--java.util.logging的绑定，也称为JDK 1.4日志记录-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>1.7.32</version>
+        </dependency>
+        <!--Jakarta Commons Logging的绑定。此绑定会将所有SLF4J日志记录委托给JCL-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jcl</artifactId>
+            <version>1.7.32</version>
+        </dependency>
+        <!--Logback的类是SLF4J接口的直接实现-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.7</version>
+        </dependency>
+
+        <!--Log4j2是对Log4j 1.x的重写，并且引入了大量丰富的特性-->
+        <!--如果要单独使用log4j2只需要引入log4j-core，会自动引入log4j-api，并配置log4j2.xml才能正常使用-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+        <!--如果要配合使用slf4j只需要引入log4j-slf4j-impl即可，适用于SLF4J 1.7.x或更早版本-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+        <!--如果要配合使用slf4j只需要引入log4j-slf4j-impl即可，适用于SLF4J 1.8.x版本或更高版本-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j18-impl</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+
+        <!-- 加上这个才能辨认到log4j2.yml文件 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>2.13.1</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
